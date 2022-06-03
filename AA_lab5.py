@@ -1,8 +1,13 @@
 
 
-def MutualExclusion(n):
-    konfiguracja_legalna = False
-    P=[] # tokeny
+def iflegal(SK):
+    if sum(SK) == 1:
+        konfiguracja_legalna = True
+    else:
+        konfiguracja_legalna = False
+    return konfiguracja_legalna
+
+def MutualExclusion(n,P):
     SK=[] # sekcja krytyczna
     for i in range(0,n):
         P.append(-1)
@@ -19,21 +24,23 @@ def MutualExclusion(n):
         else:
             SK[i] = 0
 
-    if sum(SK) == 1:
-        konfiguracja_legalna = True
-    else:
-        konfiguracja_legalna = False
+
         
     
     
     return step
 
 n = 5
+P=[] # tokeny
 
+for i in range(0,n):
+    for j in range(0,n):
+        for k in range(0,n):
+            i=n
 
 
 
 #Maksymalna liczba krokow do konfiguracji legalnej
-print('n =',n,'\nworst case:',MutualExclusion(n))
+print('n =',n,'\nworst case:',MutualExclusion(n,P))
 
 
