@@ -40,6 +40,41 @@ def MutualExclusion(n,P,step):
     return worst_case
 
 
+def all_configurations(n):
+    if n==2:
+        for a in range(0,n):
+            for b in range(0,n):
+                P=[a,b]
+                print(P)
+    if n==3:
+        for a in range(0,n):
+            for b in range(0,n):
+                for c in range(0,n):
+                    P=[a,b,c]
+                    print(P)
+    if n==4:
+        for a in range(0,n):
+            for b in range(0,n):
+                for c in range(0,n):
+                    for d in range(0,n):
+                        P=[a,b,c,d]
+                        print(P)
+    if n==5:
+        for a in range(0,n):
+            for b in range(0,n):
+                for c in range(0,n):
+                    for d in range(0,n):
+                        for e in range(0,n):
+                            P=[a,b,c,d,e]
+    if n==6:
+        for a in range(0,n):
+            for b in range(0,n):
+                for c in range(0,n):
+                    for d in range(0,n):
+                        for e in range(0,n):
+                            for f in range(0,n):
+                                P=[a,b,c,d,e,f]
+
 n = 3
 P=[] # tokeny
 for i in range(0,n):
@@ -48,7 +83,6 @@ for i in range(0,n):
 P[0]=0
 P[1]=1
 P[2]=1
-
 
 
 #Maksymalna liczba krokow do konfiguracji legalnej
