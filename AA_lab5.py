@@ -1,5 +1,3 @@
-
-
 def iflegal(P):
     SK=[] # sekcja krytyczna (mozliwosc ruchu dla kazdego wezla)
     n = len(P)
@@ -29,9 +27,8 @@ def move(P,x):
 
 def MutualExclusion(n,P,step):
     worst_case = 0
-   # if step > worst_case:
-  #      worst_case = step
-  
+    if step > worst_case:
+        worst_case = step
     SK=[]
     for i in range(0,n):
         SK.append(2)
@@ -52,31 +49,37 @@ def MutualExclusion(n,P,step):
             A = P
             k = step
             k += 1
-            MutualExclusion(n,move(A,i),k)
+            worst_case=max(worst_case,MutualExclusion(n,move(A,i),step+1))
     
-  
     return worst_case
 
 
 def all_configurations(n):
+    worst = 0
     if n==2:
         for a in range(0,n):
             for b in range(0,n):
                 P=[a,b]
-                print(P)
+                z = MutualExclusion(n,P,0)
+                if worst < z:
+                    worst = z
     if n==3:
         for a in range(0,n):
             for b in range(0,n):
                 for c in range(0,n):
                     P=[a,b,c]
-                    print(P)
+                    z = MutualExclusion(n,P,0)
+                    if worst < z:
+                        worst = z
     if n==4:
         for a in range(0,n):
             for b in range(0,n):
                 for c in range(0,n):
                     for d in range(0,n):
                         P=[a,b,c,d]
-                        print(P)
+                        z = MutualExclusion(n,P,0)
+                        if worst < z:
+                            worst = z
     if n==5:
         for a in range(0,n):
             for b in range(0,n):
@@ -84,6 +87,9 @@ def all_configurations(n):
                     for d in range(0,n):
                         for e in range(0,n):
                             P=[a,b,c,d,e]
+                            z = MutualExclusion(n,P,0)
+                            if worst < z:
+                                worst = z
     if n==6:
         for a in range(0,n):
             for b in range(0,n):
@@ -92,18 +98,15 @@ def all_configurations(n):
                         for e in range(0,n):
                             for f in range(0,n):
                                 P=[a,b,c,d,e,f]
+                                z = MutualExclusion(n,P,0)
+                                if worst < z:
+                                    worst = z
+    return worst
 
-n = 3
-P=[] # tokeny
-for i in range(0,n):
-    P.append(-1)
 
-P[0]=0
-P[1]=1
-P[2]=1
-
+n = 6
 
 #Maksymalna liczba krokow do konfiguracji legalnej
-print('n =',n,'\nworst case:',MutualExclusion(n,P,0))
+print('n =',n,'\nworst case:',all_configurations(n))
 
 
