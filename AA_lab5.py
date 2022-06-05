@@ -20,21 +20,39 @@ def iflegal(P):
         konfiguracja_legalna = False
     return konfiguracja_legalna
 
+def move(P,x):
+    if x==0:
+        P[x] = (P[x]+1) % (len(P)+1)
+    else:
+        P[x] = P[x-1]
+    return P
 
 def MutualExclusion(n,P,step):
     worst_case = 0
-    if step > worst_case:
-        worst_case = step
-
+   # if step > worst_case:
+  #      worst_case = step
+  
+    SK=[]
+    for i in range(0,n):
+        SK.append(2)
+    if P[0] == P[n-1]:
+        SK[0] = 1
+    else:
+        SK[0] = 0
+    for i in range(1,n):
+        if P[i] != P[i-1]:
+            SK[i] = 1
+        else:
+            SK[i] = 0
     if iflegal(P) == True:
         return worst_case
     
-    for i in range(1,n):
-        if P[i] != P[i-1]:
+    for i in range(0,n):
+        if SK[i]==1:
             A = P
             k = step
             k += 1
-            MutualExclusion(n,A,k)
+            MutualExclusion(n,move(A,i),k)
     
   
     return worst_case
