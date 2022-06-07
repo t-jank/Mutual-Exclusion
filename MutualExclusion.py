@@ -27,8 +27,8 @@ def move(P,x):
 
 def MutualExclusion(n,P,step):
     worst_case = 0
-    if step > worst_case:
-        worst_case = step
+   # if step > worst_case:
+  #      worst_case = step
     SK=[]
     for i in range(0,n):
         SK.append(2)
@@ -42,7 +42,7 @@ def MutualExclusion(n,P,step):
         else:
             SK[i] = 0
     if iflegal(P) == True:
-        return worst_case
+        return step
     
     for i in range(0,n):
         if SK[i]==1:
@@ -104,7 +104,7 @@ def all_configurations(n):
     return worst
 
 
-n = 6
+n = 4
 
 #Maksymalna liczba krokow do konfiguracji legalnej
 print('n =',n,'\nworst case:',all_configurations(n))
