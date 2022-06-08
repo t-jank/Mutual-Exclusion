@@ -7,15 +7,16 @@ for i in range(0,v):
 wybor = [0]*v
 
 AdjacencyList = []
+liczba_krawedzi = 0.5 * v*(v-1)/2
 for i in range(0,v):
-    liczba_sasiadow = random.randint(1, v-3)
     AdjacencyList.append([])
-    for j in range(0,liczba_sasiadow):
-        sasiad = random.randint(0,v-1)
-        while(sasiad in AdjacencyList[i]):
-            sasiad = random.randint(0,v-1)
-        AdjacencyList[i].append(sasiad)
-
+for j in range(0,int(liczba_krawedzi)):
+    v1 = random.randint(0,v-1)
+    v2 = random.randint(0,v-1)
+    while v2 in AdjacencyList[v1] or v2 == v1:
+        v2 = random.randint(0,v-1)
+    AdjacencyList[v1].append(v2)
+    AdjacencyList[v2].append(v1)
 print(AdjacencyList)
 
 koniec = 0
@@ -30,3 +31,5 @@ while True:
         else:
             wybor[i] = 0
     if koniec == 100: break
+print(wybor)
+
