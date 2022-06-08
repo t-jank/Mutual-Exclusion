@@ -1,6 +1,6 @@
 import random
 
-v = 8 # liczba krawedzi
+v = 8 # liczba wierzcholkow
 V = []
 for i in range(0,v):
     V.append(i)
