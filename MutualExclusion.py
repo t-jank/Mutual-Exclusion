@@ -1,8 +1,7 @@
 def iflegal(P):
     SK=[] # sekcja krytyczna (mozliwosc ruchu dla kazdego wezla)
     n = len(P)
-    for i in range(0,n):
-        SK.append(2)
+    SK = [2]*n
     if P[0] == P[n-1]:
         SK[0] = 1
     else:
@@ -27,9 +26,7 @@ def move(P,x):
 
 def MutualExclusion(n,P,step):
     worst_case = step
-    SK=[]
-    for i in range(0,n):
-        SK.append(2)
+    SK = [1]*n
     if P[0] == P[n-1]:
         SK[0] = 1
     else:
@@ -39,15 +36,13 @@ def MutualExclusion(n,P,step):
             SK[i] = 1
         else:
             SK[i] = 0
-    if iflegal(P) == True:
+    if sum(SK) == 1:
         return worst_case
 
     for s in range(0,n):
         if SK[s]==1:
-            A = P
             powrot_guarantee = P[s]
-            worst_case=max(worst_case,MutualExclusion(n,move(A,s),step+1))
-         #   MutualExclusion(n,move(A,s),step+1)
+            worst_case = max(worst_case, MutualExclusion(n,move(P,s), step+1))
             P[s] = powrot_guarantee
     return worst_case
 
@@ -102,9 +97,7 @@ def all_configurations(n):
     return worst
 
 
-n = 5
-
+n = 4
 #Maksymalna liczba krokow do konfiguracji legalnej
 print('n =',n,'\nworst case:',all_configurations(n))
-
 
