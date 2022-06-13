@@ -1,11 +1,7 @@
 import random
 
 v = 8 # liczba wierzcholkow
-V = []
-for i in range(0,v):
-    V.append(i)
 wybor = [0]*v
-
 AdjacencyList = []
 liczba_krawedzi = 0.5 * v*(v-1)/2
 for i in range(0,v):
@@ -17,7 +13,7 @@ for j in range(0,int(liczba_krawedzi)):
         v2 = random.randint(0,v-1)
     AdjacencyList[v1].append(v2)
     AdjacencyList[v2].append(v1)
-print(AdjacencyList)
+print('Lista sasiedztwa:\n',AdjacencyList,sep='')
 
 koniec = 0
 while True:
@@ -31,5 +27,5 @@ while True:
         else:
             wybor[i] = 0
     if koniec == 100: break
-print(wybor)
+print('\nMaksymalny zbior niezalezny:\n',wybor,sep='')
 
