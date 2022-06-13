@@ -1,3 +1,5 @@
+import time
+
 def iflegal(P):
     SK=[] # sekcja krytyczna (mozliwosc ruchu dla kazdego wezla)
     n = len(P)
@@ -97,7 +99,9 @@ def all_configurations(n):
     return worst
 
 
-n = 4
+n = 5
 #Maksymalna liczba krokow do konfiguracji legalnej
+start = time.time()
 print('n =',n,'\nworst case:',all_configurations(n))
-
+end = time.time()
+print('czas:',end - start,'s')
