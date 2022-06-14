@@ -86,6 +86,9 @@ def all_configurations(n):
                             if worst < z:
                                 worst = z
     if n==6:
+        counter = 0
+        liczba_kombinacji = 7**6 #117649
+        czas1 = 0
         for a in range(0,n+1):
             for b in range(0,n+1):
                 for c in range(0,n+1):
@@ -93,13 +96,20 @@ def all_configurations(n):
                         for e in range(0,n+1):
                             for f in range(0,n+1):
                                 P=[a,b,c,d,e,f]
+                                start1 = time.time()
                                 z = MutualExclusion(n,P,0)
+                                end1 = time.time()
+                                czas1 += end1 - start1
                                 if worst < z:
                                     worst = z
+                                counter += 1
+                                if counter % 500 == 0:
+                                    print('sprawdzono:',counter,'/',liczba_kombinacji,'; czas:', czas1,'s')
+                                
     return worst
 
 
-n = 5
+n = 6
 #Maksymalna liczba krokow do konfiguracji legalnej
 start = time.time()
 print('n =',n,'\nworst case:',all_configurations(n))
